@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>new_sapling_here.html</title>
+
+<style>
+.block {
+display: block;
+width: 80%;
+border: none;
+color: white;
+padding: 14px 28px;
+font-size: 80px;
+cursor: pointer;
+text-align: center;
+border-radius: 30px;
+font-weight: bold;
+margin:auto;
+}
+.block:hover {
+background-color: #ddd;
+color: black;
+}
+.type_blue {
+background-color: #3399ff;}
+.type_green {
+background-color: #33cc33;}
+.type_orange {
+background-color: #ff9933;}
+</style>
+</head>
+<body>
+<div style="text-align: right;">
+<div style="text-align: right;"></div>
+<div style="text-align: center;">
+<div style="text-align: right;"><big><big><big><span style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;">&nbsp;&nbsp;&nbsp;
+</span></big></big></big><br>
+</div>
+<big><big><big><span style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;"></span></big></big></big></div>
+<big><big><big><span style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;"><br>
+<big>Temperature:</big></span><big><span style="font-family: Helvetica,Arial,sans-serif;"> {{data['Temperature']}}
+degrees C</span> &nbsp;&nbsp; &nbsp; <br style="font-family: Helvetica,Arial,sans-serif;">
+<span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Humidity:</span> {{data['Humidity']}}
+&nbsp;&nbsp; &nbsp;</span><br style="font-family: Helvetica,Arial,sans-serif;">
+</big>
+<span style="font-family: Helvetica,Arial,sans-serif;"><big><span style="font-weight: bold;">Cloud Cover Now: </span>{{data['Cloud']}}
+%&nbsp; </big>&nbsp;&nbsp; &nbsp;</span><br>
+<br>
+<br>
+<br>
+</big></big></big></div>
+<br>
+<div style="text-align: center;"><br>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<form action="{{url_for('new_sapling_here')}}">
+<input id='lat' name='lat' style="display: none;" value="">
+<input id='lng' name='lng' style="display: none;" value="" >
+<input id='sap_id' name='sap_id', style="display: none;" value="{{data}}">
+<button type="button" onclick="geo();" class="block type_blue">Get Location</button>
+<button type="submit" class="block type_green">
+I planted a <br>
+new sapling <br>
+here!</button>
+</form>
+<br>
+<br>
+<br>
+<br>
+<script>
+
+
+
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function success(pos, para) {
+  var crd = pos.coords;
+  
+
+  document.getElementById("lat").setAttribute('value', crd.latitude);
+  document.getElementById("lng").setAttribute('value', crd.longitude);
+
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+function geo(){
+navigator.geolocation.getCurrentPosition(success, error, options);
+}
+</script>
+</body></html>
