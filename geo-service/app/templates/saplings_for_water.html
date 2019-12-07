@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>saplings_for_water.html</title>
+
+<style>
+.block {
+display: block;
+width: 80%;
+border: none;
+color: white;
+padding: 14px 28px;
+font-size: 80px;
+cursor: pointer;
+text-align: center;
+border-radius: 30px;
+font-weight: bold;
+margin:auto;
+}
+.block:hover {
+background-color: #ddd;
+color: black;
+}
+.type_blue {
+background-color: #3399ff;}
+.type_green {
+background-color: #33cc33;}
+.type_orange {
+background-color: #ff9933;}
+</style>
+</head>
+<body>
+<div style="text-align: right;">
+<div style="text-align: right;"></div>
+<div style="text-align: center;">
+<div style="text-align: right;"><big><big><big><span style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;">&nbsp;&nbsp;&nbsp;
+</span></big></big></big><br>
+</div>
+<br>
+<br>
+<br>
+</big></big></big>
+<div style="text-align: center;"></div>
+</div>
+<div style="text-align: center;"><br>
+</div>
+
+<table class="table" style="text-align: left; margin-left: auto; margin-right: auto;" cellpadding="2" cellspacing="2" width="80%">
+                            <thead>
+                                <tr>
+                                    <th style="font-family: Arial Black; font-weight: bold; background-color: rgb(51, 204, 0); text-align: center;" scope="col">#</th>
+                                    <th style="font-family: Arial Black; font-weight: bold; background-color: rgb(51, 204, 0); text-align: center;" scope="col">Title</th>
+                                    <th style="font-family: Arial Black; font-weight: bold; background-color: rgb(51, 204, 0); text-align: center;" scope="col">Date</th>
+                                    <th style="font-family: Arial Black; font-weight: bold; background-color: rgb(51, 204, 0); text-align: center;" scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in data %}
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td>
+                                    <td>{{item[3]}}</td>
+                                    <td><div class="radio">
+                                                    <a href="{{url_for('new_sapling_here', sap_id=item[0])}}"></a>
+                                                </div>
+</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body></html>

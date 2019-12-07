@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get your coordinates.</p>
+
+
+
+
+<form action="{{ url_for('home_page')}}" method="POST" target="_blank">
+
+<input id='lat' name='lat' style="display: none;" value="">
+<input id='lng' name='lng' style="display: none;" value="" >
+<button type="button" onclick="geo();">get loc</button>
+<button type="submit">Submit</button>
+</form>
+<script>
+
+
+
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function success(pos, para) {
+  var crd = pos.coords;
+  
+
+  document.getElementById("lat").setAttribute('value', crd.latitude);
+  document.getElementById("lng").setAttribute('value', crd.longitude);
+
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+function geo(){
+navigator.geolocation.getCurrentPosition(success, error, options);
+}
+</script>
+
+</body>
+</html>
+
